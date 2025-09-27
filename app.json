@@ -1,0 +1,32 @@
+{
+  "name": "nfl-aggregator",
+  "description": "Full-stack NFL website aggregator for scores, stats, and insights",
+  "repository": "https://github.com/yourusername/nfl-aggregator",
+  "logo": "https://via.placeholder.com/150x150/1976d2/ffffff?text=NFL",
+  "keywords": ["nfl", "sports", "aggregator", "scores", "stats"],
+  "image": "heroku/nodejs",
+  "stack": "heroku-22",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "env": {
+    "NODE_ENV": {
+      "description": "Environment",
+      "value": "production"
+    },
+    "PORT": {
+      "description": "Port for the server",
+      "value": "5000"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "addons": []
+}
+

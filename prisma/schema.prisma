@@ -1,0 +1,218 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Team {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  abbreviation String  @unique
+  city        String
+  conference  String   // AFC or NFC
+  division    String   // North, South, East, West
+  logo        String?
+  colors      Json?    // Primary and secondary colors
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  homeGames   Game[] @relation("HomeTeam")
+  awayGames   Game[] @relation("AwayTeam")
+  players     Player[]
+  teamStats   TeamStats[]
+
+  @@map("teams")
+}
+
+model Player {
+  id          String   @id @default(cuid())
+  name        String
+  position    String
+  number      Int
+  teamId      String
+  height      String?
+  weight      Int?
+  age         Int?
+  college     String?
+  experience  Int?
+  status      String   @default("active") // active, injured, suspended
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  team        Team @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  playerStats PlayerStats[]
+
+  @@unique([teamId, number])
+  @@map("players")
+}
+
+model Game {
+  id          String   @id @default(cuid())
+  season      Int
+  week        Int
+  gameType    String   // regular, playoff, superbowl
+  status      String   // scheduled, in_progress, completed, postponed, cancelled
+  date        DateTime
+  homeTeamId  String
+  awayTeamId  String
+  homeScore   Int?
+  awayScore   Int?
+  quarter     Int?
+  timeRemaining String?
+  venue       String?
+  weather     Json?
+  attendance  Int?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  homeTeam    Team @relation("HomeTeam", fields: [homeTeamId], references: [id])
+  awayTeam    Team @relation("AwayTeam", fields: [awayTeamId], references: [id])
+  gameStats   GameStats[]
+  playerStats PlayerStats[]
+
+  @@unique([season, week, homeTeamId, awayTeamId])
+  @@map("games")
+}
+
+model GameStats {
+  id          String   @id @default(cuid())
+  gameId      String
+  teamId      String
+  totalYards  Int      @default(0)
+  passingYards Int     @default(0)
+  rushingYards Int     @default(0)
+  turnovers   Int      @default(0)
+  penalties   Int      @default(0)
+  timeOfPossession String?
+  firstDowns  Int      @default(0)
+  thirdDownConversions Int @default(0)
+  thirdDownAttempts Int @default(0)
+  redZoneAttempts Int  @default(0)
+  redZoneConversions Int @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  game        Game @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  team        Team @relation(fields: [teamId], references: [id])
+
+  @@unique([gameId, teamId])
+  @@map("game_stats")
+}
+
+model PlayerStats {
+  id          String   @id @default(cuid())
+  gameId      String
+  playerId    String
+  teamId      String
+  position    String
+  
+  // Passing stats
+  passAttempts Int     @default(0)
+  passCompletions Int  @default(0)
+  passYards    Int     @default(0)
+  passTDs      Int     @default(0)
+  interceptions Int    @default(0)
+  passRating   Float?
+  
+  // Rushing stats
+  rushAttempts Int     @default(0)
+  rushYards    Int     @default(0)
+  rushTDs      Int     @default(0)
+  fumbles     Int      @default(0)
+  
+  // Receiving stats
+  receptions  Int      @default(0)
+  receivingYards Int   @default(0)
+  receivingTDs Int     @default(0)
+  
+  // Defense stats
+  tackles     Int      @default(0)
+  sacks       Int      @default(0)
+  interceptions Int    @default(0)
+  fumbleRecoveries Int  @default(0)
+  passesDefended Int   @default(0)
+  
+  // Special teams
+  fieldGoals  Int      @default(0)
+  fieldGoalAttempts Int @default(0)
+  extraPoints Int      @default(0)
+  extraPointAttempts Int @default(0)
+  punts       Int      @default(0)
+  puntYards   Int      @default(0)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  game        Game @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  player      Player @relation(fields: [playerId], references: [id], onDelete: Cascade)
+  team        Team @relation(fields: [teamId], references: [id])
+
+  @@unique([gameId, playerId])
+  @@map("player_stats")
+}
+
+model TeamStats {
+  id          String   @id @default(cuid())
+  teamId      String
+  season      Int
+  week        Int?
+  wins        Int      @default(0)
+  losses      Int      @default(0)
+  ties        Int      @default(0)
+  pointsFor   Int      @default(0)
+  pointsAgainst Int    @default(0)
+  totalYards  Int      @default(0)
+  totalYardsAllowed Int @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  team        Team @relation(fields: [teamId], references: [id], onDelete: Cascade)
+
+  @@unique([teamId, season, week])
+  @@map("team_stats")
+}
+
+model Leaderboard {
+  id          String   @id @default(cuid())
+  season      Int
+  week        Int?
+  category    String   // passing_yards, rushing_yards, receiving_yards, etc.
+  playerId    String?
+  teamId      String?
+  value       Float
+  rank        Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([season, week, category, rank])
+  @@map("leaderboards")
+}
+
+model News {
+  id          String   @id @default(cuid())
+  title       String
+  content     String
+  author      String?
+  source      String
+  url         String?
+  imageUrl    String?
+  publishedAt DateTime
+  category    String   // general, injury, trade, draft, etc.
+  tags        String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("news")
+}
