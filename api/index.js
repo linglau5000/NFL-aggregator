@@ -47,22 +47,48 @@ const mockData = {
     { id: 32, name: 'Seattle Seahawks', city: 'Seattle', conference: 'NFC', division: 'West', wins: 9, losses: 8, ties: 0 }
   ],
   games: [
-    { id: 1, homeTeam: 'Buffalo Bills', awayTeam: 'Miami Dolphins', homeScore: 24, awayScore: 17, status: 'completed', date: '2025-01-05', time: '20:00' },
-    { id: 2, homeTeam: 'Kansas City Chiefs', awayTeam: 'Las Vegas Raiders', homeScore: 31, awayScore: 13, status: 'completed', date: '2025-01-05', time: '16:25' },
-    { id: 3, homeTeam: 'Dallas Cowboys', awayTeam: 'Philadelphia Eagles', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-01-12', time: '16:25' },
-    { id: 4, homeTeam: 'San Francisco 49ers', awayTeam: 'Green Bay Packers', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-01-12', time: '16:30' },
-    { id: 5, homeTeam: 'Baltimore Ravens', awayTeam: 'Houston Texans', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-01-12', time: '13:00' },
-    { id: 6, homeTeam: 'Detroit Lions', awayTeam: 'Los Angeles Rams', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-01-12', time: '20:00' },
-    { id: 7, homeTeam: 'Tampa Bay Buccaneers', awayTeam: 'Philadelphia Eagles', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-01-12', time: '13:00' },
-    { id: 8, homeTeam: 'Pittsburgh Steelers', awayTeam: 'Buffalo Bills', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-01-12', time: '13:00' },
-    { id: 9, homeTeam: 'Cleveland Browns', awayTeam: 'Houston Texans', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-01-12', time: '13:00' },
-    { id: 10, homeTeam: 'Miami Dolphins', awayTeam: 'Kansas City Chiefs', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-01-12', time: '20:00' },
-    { id: 11, homeTeam: 'Green Bay Packers', awayTeam: 'San Francisco 49ers', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-01-12', time: '16:30' },
-    { id: 12, homeTeam: 'Los Angeles Rams', awayTeam: 'Detroit Lions', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-01-12', time: '20:00' },
-    { id: 13, homeTeam: 'Houston Texans', awayTeam: 'Cleveland Browns', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-01-12', time: '13:00' },
-    { id: 14, homeTeam: 'Philadelphia Eagles', awayTeam: 'Tampa Bay Buccaneers', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-01-12', time: '13:00' },
-    { id: 15, homeTeam: 'Buffalo Bills', awayTeam: 'Pittsburgh Steelers', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-01-12', time: '13:00' },
-    { id: 16, homeTeam: 'Kansas City Chiefs', awayTeam: 'Miami Dolphins', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-01-12', time: '20:00' }
+    // Week 1 - September 7-8, 2025 (Completed)
+    { id: 1, homeTeam: 'Buffalo Bills', awayTeam: 'New England Patriots', homeScore: 28, awayScore: 14, status: 'completed', date: '2025-09-07', time: '13:00' },
+    { id: 2, homeTeam: 'Kansas City Chiefs', awayTeam: 'Houston Texans', homeScore: 31, awayScore: 17, status: 'completed', date: '2025-09-07', time: '16:25' },
+    { id: 3, homeTeam: 'Dallas Cowboys', awayTeam: 'Cleveland Browns', homeScore: 24, awayScore: 21, status: 'completed', date: '2025-09-07', time: '20:20' },
+    { id: 4, homeTeam: 'San Francisco 49ers', awayTeam: 'New York Jets', homeScore: 35, awayScore: 7, status: 'completed', date: '2025-09-08', time: '16:25' },
+    
+    // Week 2 - September 14-15, 2025 (Completed)
+    { id: 5, homeTeam: 'Miami Dolphins', awayTeam: 'Jacksonville Jaguars', homeScore: 27, awayScore: 20, status: 'completed', date: '2025-09-14', time: '13:00' },
+    { id: 6, homeTeam: 'Baltimore Ravens', awayTeam: 'Las Vegas Raiders', homeScore: 30, awayScore: 13, status: 'completed', date: '2025-09-14', time: '16:25' },
+    { id: 7, homeTeam: 'Detroit Lions', awayTeam: 'Tampa Bay Buccaneers', homeScore: 28, awayScore: 24, status: 'completed', date: '2025-09-14', time: '13:00' },
+    { id: 8, homeTeam: 'Philadelphia Eagles', awayTeam: 'Atlanta Falcons', homeScore: 31, awayScore: 17, status: 'completed', date: '2025-09-15', time: '20:15' },
+    
+    // Week 3 - September 21-22, 2025 (Completed)
+    { id: 9, homeTeam: 'Buffalo Bills', awayTeam: 'Miami Dolphins', homeScore: 31, awayScore: 24, status: 'completed', date: '2025-09-21', time: '13:00' },
+    { id: 10, homeTeam: 'Kansas City Chiefs', awayTeam: 'Denver Broncos', homeScore: 28, awayScore: 17, status: 'completed', date: '2025-09-21', time: '16:25' },
+    { id: 11, homeTeam: 'Dallas Cowboys', awayTeam: 'New York Giants', homeScore: 24, awayScore: 21, status: 'completed', date: '2025-09-21', time: '20:20' },
+    { id: 12, homeTeam: 'San Francisco 49ers', awayTeam: 'Los Angeles Rams', homeScore: 35, awayScore: 14, status: 'completed', date: '2025-09-22', time: '16:25' },
+    
+    // Week 4 - September 28-29, 2025 (This Week - Mix of completed and upcoming)
+    { id: 13, homeTeam: 'Baltimore Ravens', awayTeam: 'Cincinnati Bengals', homeScore: 27, awayScore: 20, status: 'completed', date: '2025-09-28', time: '13:00' },
+    { id: 14, homeTeam: 'Detroit Lions', awayTeam: 'Chicago Bears', homeScore: 30, awayScore: 23, status: 'completed', date: '2025-09-28', time: '13:00' },
+    { id: 15, homeTeam: 'Tampa Bay Buccaneers', awayTeam: 'New Orleans Saints', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-09-29', time: '13:00' },
+    { id: 16, homeTeam: 'Pittsburgh Steelers', awayTeam: 'Indianapolis Colts', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-09-29', time: '16:25' },
+    { id: 17, homeTeam: 'Miami Dolphins', awayTeam: 'New York Jets', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-09-29', time: '20:20' },
+    
+    // Week 5 - October 5-6, 2025 (Upcoming)
+    { id: 18, homeTeam: 'Buffalo Bills', awayTeam: 'Houston Texans', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-10-05', time: '13:00' },
+    { id: 19, homeTeam: 'Kansas City Chiefs', awayTeam: 'Las Vegas Raiders', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-10-05', time: '16:25' },
+    { id: 20, homeTeam: 'Dallas Cowboys', awayTeam: 'Washington Commanders', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-10-05', time: '20:20' },
+    { id: 21, homeTeam: 'San Francisco 49ers', awayTeam: 'Arizona Cardinals', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-10-06', time: '16:25' },
+    
+    // Week 6 - October 12-13, 2025 (Upcoming)
+    { id: 22, homeTeam: 'Baltimore Ravens', awayTeam: 'Cleveland Browns', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-10-12', time: '13:00' },
+    { id: 23, homeTeam: 'Detroit Lions', awayTeam: 'Green Bay Packers', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-10-12', time: '16:25' },
+    { id: 24, homeTeam: 'Philadelphia Eagles', awayTeam: 'New Orleans Saints', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-10-12', time: '20:20' },
+    { id: 25, homeTeam: 'Miami Dolphins', awayTeam: 'Denver Broncos', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-10-13', time: '16:25' },
+    
+    // Week 7 - October 19-20, 2025 (Upcoming)
+    { id: 26, homeTeam: 'Buffalo Bills', awayTeam: 'New York Jets', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-10-19', time: '13:00' },
+    { id: 27, homeTeam: 'Kansas City Chiefs', awayTeam: 'Los Angeles Chargers', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-10-19', time: '16:25' },
+    { id: 28, homeTeam: 'Dallas Cowboys', awayTeam: 'Philadelphia Eagles', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-10-19', time: '20:20' },
+    { id: 29, homeTeam: 'San Francisco 49ers', awayTeam: 'Seattle Seahawks', homeScore: 0, awayScore: 0, status: 'scheduled', date: '2025-10-20', time: '16:25' }
   ],
   players: [
     { id: 1, name: 'Tua Tagovailoa', team: 'MIA', position: 'QB', jersey: 1, stats: { passingYards: 4891, passingTDs: 32, interceptions: 12 } },
@@ -79,13 +105,16 @@ const mockData = {
     { id: 12, name: 'Cooper Kupp', team: 'LAR', position: 'WR', jersey: 10, stats: { receivingYards: 1456, receivingTDs: 11, receptions: 98 } }
   ],
   news: [
-    { id: 1, title: 'Ravens Clinch AFC Top Seed for 2025', content: 'Baltimore Ravens secured the #1 seed in the AFC with their dominant regular season performance.', source: 'NFL.com', date: '2025-01-05' },
-    { id: 2, title: 'Cowboys Dominate NFC East in 2025', content: 'Dallas Cowboys captured the NFC East division title with an impressive 12-5 record.', source: 'ESPN', date: '2025-01-05' },
-    { id: 3, title: '2025 Playoff Bracket Set', content: 'The 2025 NFL playoff picture is complete with all 14 teams determined for the postseason.', source: 'CBS Sports', date: '2025-01-05' },
-    { id: 4, title: 'Wild Card Weekend 2025 Schedule', content: 'Wild Card Weekend 2025 games have been announced with thrilling matchups ahead.', source: 'NFL.com', date: '2025-01-05' },
-    { id: 5, title: '2025 MVP Race Down to Finalists', content: 'Lamar Jackson, Josh Allen, and Dak Prescott lead the 2025 MVP conversation heading into playoffs.', source: 'NFL.com', date: '2025-01-04' },
-    { id: 6, title: '49ers Look to Repeat as Champions', content: 'San Francisco 49ers aim to defend their Super Bowl title in the 2025 playoffs.', source: 'NFL.com', date: '2025-01-04' },
-    { id: 7, title: 'Rookie Sensations Shine in 2025', content: 'Several rookie players have made immediate impact in their first NFL season.', source: 'ESPN', date: '2025-01-03' }
+    { id: 1, title: 'Ravens and Lions Secure Week 4 Victories', content: 'Baltimore Ravens defeated Cincinnati Bengals 27-20 while Detroit Lions beat Chicago Bears 30-23 in Sunday action.', source: 'NFL.com', date: '2025-09-28' },
+    { id: 2, title: 'Week 4 Sunday Night Football: Dolphins vs Jets', content: 'Miami Dolphins face New York Jets in a crucial AFC East matchup on Sunday Night Football.', source: 'ESPN', date: '2025-09-28' },
+    { id: 3, title: 'Bills Continue Strong Start with 3-1 Record', content: 'Buffalo Bills have won three of their first four games, including a 31-24 victory over Miami Dolphins in Week 3.', source: 'CBS Sports', date: '2025-09-25' },
+    { id: 4, title: '49ers Look Unstoppable in Early Season', content: 'San Francisco 49ers are 4-0 after dominating the Los Angeles Rams 35-14, showing they\'re the team to beat.', source: 'NFL.com', date: '2025-09-25' },
+    { id: 5, title: 'Chiefs Maintain AFC West Lead', content: 'Kansas City Chiefs improved to 3-1 with a 28-17 victory over Denver Broncos, maintaining their division lead.', source: 'NFL.com', date: '2025-09-25' },
+    { id: 6, title: 'Cowboys Edge Giants in NFC East Battle', content: 'Dallas Cowboys secured a 24-21 win over New York Giants in a hard-fought divisional matchup.', source: 'ESPN', date: '2025-09-25' },
+    { id: 7, title: 'Week 5 Preview: Key Matchups Ahead', content: 'Next week features Bills vs Texans, Chiefs vs Raiders, and Cowboys vs Commanders in exciting matchups.', source: 'NFL.com', date: '2025-09-28' },
+    { id: 8, title: 'Injury Updates: Key Players Status for Week 5', content: 'Several star players are dealing with injuries as teams prepare for Week 5 action.', source: 'ESPN', date: '2025-09-28' },
+    { id: 9, title: 'Rookie Quarterbacks Making Early Impact', content: 'Several rookie QBs have shown promise in the first month of the 2025 NFL season.', source: 'NFL.com', date: '2025-09-27' },
+    { id: 10, title: 'Defensive Standouts Through Week 4', content: 'T.J. Watt and other defensive stars are putting up impressive numbers early in the season.', source: 'ESPN', date: '2025-09-27' }
   ]
 };
 
