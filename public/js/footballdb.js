@@ -160,24 +160,18 @@ class FootballDB {
         }
 
         container.innerHTML = recentGames.map(game => `
-            <div class="score-card">
-                <div class="score-header">
-                    <span class="game-status completed">Final</span>
+            <div class="game-item">
+                <div class="game-teams">
+                    <span class="away-team">${game.awayTeam}</span>
+                    <span class="vs">@</span>
+                    <span class="home-team">${game.homeTeam}</span>
                 </div>
-                <div class="score-teams">
-                    <div class="team-score away">
-                        <span class="team-name-score">${game.awayTeam.name}</span>
-                        <span class="team-score-value">${game.awayScore}</span>
-                    </div>
-                    <span class="score-vs">@</span>
-                    <div class="team-score home">
-                        <span class="team-score-value">${game.homeScore}</span>
-                        <span class="team-name-score">${game.homeTeam.name}</span>
-                    </div>
+                <div class="game-score">
+                    <span class="away-score">${game.awayScore}</span>
+                    <span class="vs">-</span>
+                    <span class="home-score">${game.homeScore}</span>
                 </div>
-                <div class="game-details">
-                    <span>${game.date || 'Recent'}</span>
-                </div>
+                <div class="game-date">${game.date}</div>
             </div>
         `).join('');
     }
@@ -192,22 +186,14 @@ class FootballDB {
         }
 
         container.innerHTML = upcomingGames.map(game => `
-            <div class="score-card">
-                <div class="score-header">
-                    <span class="game-status scheduled">${game.time || 'TBD'}</span>
+            <div class="game-item">
+                <div class="game-teams">
+                    <span class="away-team">${game.awayTeam}</span>
+                    <span class="vs">@</span>
+                    <span class="home-team">${game.homeTeam}</span>
                 </div>
-                <div class="score-teams">
-                    <div class="team-score away">
-                        <span class="team-name-score">${game.awayTeam.name}</span>
-                    </div>
-                    <span class="score-vs">@</span>
-                    <div class="team-score home">
-                        <span class="team-name-score">${game.homeTeam.name}</span>
-                    </div>
-                </div>
-                <div class="game-details">
-                    <span>${game.date || 'Upcoming'}</span>
-                </div>
+                <div class="game-time">${game.time || 'TBD'}</div>
+                <div class="game-date">${game.date}</div>
             </div>
         `).join('');
     }
