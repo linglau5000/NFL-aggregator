@@ -10,7 +10,7 @@
     "build": "npm run build:server && npm run build:client",
     "build:server": "tsc -p tsconfig.server.json",
     "build:client": "cd client && npm run build",
-    "start": "node dist/server/index.js",
+    "start": "node server/index.js",
     "install-all": "npm install && cd client && npm install",
     "test": "jest --coverage --watchAll=false",
     "test:watch": "jest --coverage --watch",
@@ -23,8 +23,6 @@
     "security:fix": "npm audit fix",
     "security:scan": "snyk test",
     "sonar": "sonar-scanner",
-    "prepare": "husky install",
-    "pre-commit": "lint-staged",
     "db:migrate": "npx prisma migrate dev",
     "db:generate": "npx prisma generate",
     "db:seed": "ts-node server/database/seed.ts",
@@ -80,8 +78,6 @@
     "eslint-plugin-jest": "^27.6.0",
     "eslint-plugin-security": "^1.7.1",
     "prettier": "^3.1.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^15.2.0",
     "sonarqube-scanner": "^3.1.0",
     "snyk": "^1.1248.0"
   },
@@ -104,12 +100,6 @@
     },
     "coverageReporters": ["text", "lcov", "html"],
     "testMatch": ["**/__tests__/**/*.{ts,js}", "**/?(*.)+(spec|test).{ts,js}"]
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ]
   },
   "keywords": ["nfl", "sports", "aggregator", "scores", "stats"],
   "author": "NFL Aggregator",
