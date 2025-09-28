@@ -2,7 +2,10 @@
 
 class FootballDB {
     constructor() {
-        this.apiBaseUrl = 'http://localhost:5000';
+        // Use Vercel URL for production, localhost for development
+        this.apiBaseUrl = window.location.hostname === 'localhost' 
+            ? 'http://localhost:5000' 
+            : 'https://nfl-aggregator.vercel.app';
         this.currentSection = 'home';
         this.cache = new Map();
         this.refreshInterval = null;
@@ -738,14 +741,44 @@ class FootballDB {
             return this.cache.get(endpoint);
         }
 
-        const response = await fetch(`${this.apiBaseUrl}${endpoint}`);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+            
+            const response = await fetch(`${this.apiBaseUrl}${endpoint}`, {
+                signal: controller.signal,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                }
+            });
+            
+            clearTimeout(timeoutId);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            this.cache.set(endpoint, data);
+            return data;
+        } catch (error) {
+            console.error(`Error fetching ${endpoint}:`, error);
+            // Return fallback data for better UX
+            return this.getFallbackData(endpoint);
         }
-        
-        const data = await response.json();
-        this.cache.set(endpoint, data);
-        return data;
+    }
+
+    getFallbackData(endpoint) {
+        const fallbackData = {
+            '/api/teams': { success: true, data: { teams: [] } },
+            '/api/games': { success: true, data: { games: [] } },
+            '/api/players': { success: true, data: { players: [] } },
+            '/api/stats': { success: true, data: { stats: [] } },
+            '/api/leaderboards': { success: true, data: { leaderboards: {} } },
+            '/api/news': { success: true, data: { news: [] } }
+        };
+        return fallbackData[endpoint] || { success: false, error: 'Data not available' };
     }
 
     updateLastUpdated() {

@@ -1487,6 +1487,42 @@ body {
     .stats-table {
         font-size: 0.75rem;
         min-width: 500px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Mobile stats loading optimizations */
+    .stats-table .player-info {
+        min-width: 120px;
+    }
+    
+    .stats-table .stat-value {
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+    
+    /* Hide less important columns on mobile */
+    .stats-table th:nth-child(n+5),
+    .stats-table td:nth-child(n+5) {
+        display: none;
+    }
+    
+    /* Loading states for mobile */
+    .loading {
+        font-size: 0.9rem;
+        padding: 2rem 1rem;
+        text-align: center;
+        color: var(--text-secondary);
+    }
+    
+    .error {
+        font-size: 0.9rem;
+        padding: 1rem;
+        background: #fee;
+        border: 1px solid #fcc;
+        border-radius: 0.5rem;
+        margin: 1rem 0;
+        color: #c33;
     }
     
     .standings-table th,

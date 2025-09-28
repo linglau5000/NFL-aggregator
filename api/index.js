@@ -85,18 +85,38 @@ const mockData = {
 
 // API Routes
 app.get('/api/teams', (req, res) => {
+  res.set({
+    'Cache-Control': 'public, max-age=300', // 5 minutes cache
+    'ETag': '"teams-v1"',
+    'Last-Modified': new Date().toUTCString()
+  });
   res.json({ success: true, data: { teams: mockData.teams } });
 });
 
 app.get('/api/games', (req, res) => {
+  res.set({
+    'Cache-Control': 'public, max-age=180', // 3 minutes cache
+    'ETag': '"games-v1"',
+    'Last-Modified': new Date().toUTCString()
+  });
   res.json({ success: true, data: { games: mockData.games } });
 });
 
 app.get('/api/players', (req, res) => {
+  res.set({
+    'Cache-Control': 'public, max-age=600', // 10 minutes cache
+    'ETag': '"players-v1"',
+    'Last-Modified': new Date().toUTCString()
+  });
   res.json({ success: true, data: { players: mockData.players } });
 });
 
 app.get('/api/stats', (req, res) => {
+  res.set({
+    'Cache-Control': 'public, max-age=300', // 5 minutes cache
+    'ETag': '"stats-v1"',
+    'Last-Modified': new Date().toUTCString()
+  });
   const stats = mockData.players.map(player => ({
     player: player.name,
     team: player.team,
@@ -107,6 +127,11 @@ app.get('/api/stats', (req, res) => {
 });
 
 app.get('/api/leaderboards', (req, res) => {
+  res.set({
+    'Cache-Control': 'public, max-age=300', // 5 minutes cache
+    'ETag': '"leaderboards-v1"',
+    'Last-Modified': new Date().toUTCString()
+  });
   const leaderboards = {
     passing: mockData.players.filter(p => p.position === 'QB').sort((a, b) => b.stats.passingYards - a.stats.passingYards).slice(0, 10),
     rushing: mockData.players.filter(p => p.position === 'RB').sort((a, b) => b.stats.rushingYards - a.stats.rushingYards).slice(0, 10),
@@ -117,6 +142,11 @@ app.get('/api/leaderboards', (req, res) => {
 });
 
 app.get('/api/news', (req, res) => {
+  res.set({
+    'Cache-Control': 'public, max-age=600', // 10 minutes cache
+    'ETag': '"news-v1"',
+    'Last-Modified': new Date().toUTCString()
+  });
   res.json({ success: true, data: { news: mockData.news } });
 });
 
