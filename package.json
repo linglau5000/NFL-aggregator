@@ -2,7 +2,7 @@
   "name": "nfl-aggregator",
   "version": "1.0.0",
   "description": "Full-stack NFL website aggregator for scores, stats, and insights",
-  "main": "server.js",
+  "main": "api/index.js",
   "scripts": {
     "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
     "server:dev": "nodemon --exec ts-node server/index.ts",
