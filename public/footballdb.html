@@ -285,6 +285,8 @@
 
     <script src="js/footballdb.js"></script>
     <script>
+        console.log('🔥 HTML Script loaded - JavaScript is working!');
+        
         // Direct fallback function to populate games
         function populateGamesDirectly(games) {
             console.log('🔄 Direct population of games:', games.length);
@@ -350,6 +352,7 @@
         });
         
         // Test API connectivity
+        console.log('🚀 Starting API test...');
         fetch('https://nfl-aggregator.vercel.app/api/games')
             .then(response => {
                 console.log('🌐 API Test - Response status:', response.status);
@@ -361,10 +364,14 @@
                     console.log('🌐 API Test - Games count:', data.data.games.length);
                     // Direct fallback: populate games if API works
                     populateGamesDirectly(data.data.games);
+                } else {
+                    console.error('🌐 API Test - Invalid data structure:', data);
                 }
             })
             .catch(error => {
                 console.error('🌐 API Test - Error:', error);
+                // Show error in UI
+                document.getElementById('recentGames').innerHTML = '<p class="text-center text-red-500">API Error: ' + error.message + '</p>';
             });
         
         // Also try immediate initialization as fallback
