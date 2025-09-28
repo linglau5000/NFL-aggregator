@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Performers Test</title>
+    <link rel="stylesheet" href="css/footballdb.css">
+</head>
+<body>
+    <div class="dashboard-card top-performers-card">
+        <h3><i class="fas fa-star"></i> Top Performers</h3>
+        <div id="topPerformers" class="card-content">
+            <div class="loading">Loading top performers...</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🏈 Test page loaded');
+            const container = document.getElementById('topPerformers');
+            console.log('🏈 Container found:', container);
+            
+            const topPerformers = [
+                { 
+                    name: 'Tua Tagovailoa', 
+                    stat: '4,624 Passing Yards', 
+                    team: 'MIA',
+                    position: 'QB',
+                    photo: 'https://a.espncdn.com/i/headshots/nfl/players/full/4362627.png'
+                },
+                { 
+                    name: 'Christian McCaffrey', 
+                    stat: '1,459 Rushing Yards', 
+                    team: 'SF',
+                    position: 'RB',
+                    photo: 'https://a.espncdn.com/i/headshots/nfl/players/full/3123077.png'
+                },
+                { 
+                    name: 'Tyreek Hill', 
+                    stat: '1,799 Receiving Yards', 
+                    team: 'MIA',
+                    position: 'WR',
+                    photo: 'https://a.espncdn.com/i/headshots/nfl/players/full/2330501.png'
+                },
+                { 
+                    name: 'T.J. Watt', 
+                    stat: '19 Sacks', 
+                    team: 'PIT',
+                    position: 'LB',
+                    photo: 'https://a.espncdn.com/i/headshots/nfl/players/full/3123078.png'
+                }
+            ];
+
+            container.innerHTML = topPerformers.map(player => `
+                <div class="top-performer-card">
+                    <div class="player-photo-container">
+                        <img src="${player.photo}" 
+                             alt="${player.name}" 
+                             class="player-photo"
+                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiNmM2Y0ZjYiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDEyQzE0LjIwOTEgMTIgMTYgMTAuMjA5MSAxNiA4QzE2IDUuNzkwODYgMTQuMjA5MSA0IDEyIDRDOS43OTA4NiA0IDggNS43OTA4NiA4IDhDOCAxMC4yMDkxIDkuNzkwODYgMTIgMTIgMTJaIiBmaWxsPSIjOTk5Ii8+CjxwYXRoIGQ9Ik0xMiAxNEM5LjM5NTQzIDE0IDcuMjA5MTQgMTUuNDA5MSA2IDE3LjQwOTFWMjBIMThWMTcuNDA5MUMxNi43OTA5IDE1LjQwOTEgMTQuNjA0NiAxNCAxMiAxNFoiIGZpbGw9IiM5OTkiLz4KPC9zdmc+Cjwvc3ZnPg=='">
+                    </div>
+                    <div class="player-info">
+                        <div class="player-name">${player.name}</div>
+                        <div class="player-position">${player.position}</div>
+                        <div class="player-stat">${player.stat}</div>
+                    </div>
+                    <div class="team-badge">${player.team}</div>
+                </div>
+            `).join('');
+            
+            console.log('🏈 Top performers displayed');
+        });
+    </script>
+</body>
+</html>

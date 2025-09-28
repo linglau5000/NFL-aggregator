@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFL Database - Standings, Scores & Draft</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="css/footballdb.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-database"></i>
+                <span>NFL Database</span>
+            </div>
+            <nav class="main-nav">
+                <a href="#" class="nav-item active" data-section="home">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="#" class="nav-item" data-section="standings">
+                    <i class="fas fa-trophy"></i> Standings
+                </a>
+                <a href="#" class="nav-item" data-section="scores">
+                    <i class="fas fa-football-ball"></i> Scores
+                </a>
+                <a href="#" class="nav-item" data-section="draft">
+                    <i class="fas fa-user-graduate"></i> Draft
+                </a>
+                <a href="#" class="nav-item" data-section="teams">
+                    <i class="fas fa-users"></i> Teams
+                </a>
+                <a href="#" class="nav-item" data-section="players">
+                    <i class="fas fa-user"></i> Players
+                </a>
+                <a href="#" class="nav-item" data-section="stats">
+                    <i class="fas fa-chart-line"></i> Stats
+                </a>
+            </nav>
+            <div class="header-actions">
+                <button class="btn-refresh" onclick="refreshData()">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="content-section active">
+            <div class="hero-banner">
+                <h1>NFL Database</h1>
+                <p>Complete NFL standings, scores, draft picks, and statistics</p>
+            </div>
+            
+            <div class="dashboard-grid">
+                <!-- Recent Games -->
+                <div class="dashboard-card recent-games-card">
+                    <h3><i class="fas fa-clock"></i> Recent Games</h3>
+                    <div id="recentGames" class="card-content">
+                        <div class="loading">Loading recent games...</div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Games -->
+                <div class="dashboard-card upcoming-games-card">
+                    <h3><i class="fas fa-calendar"></i> Upcoming Games</h3>
+                    <div id="upcomingGames" class="card-content">
+                        <div class="loading">Loading upcoming games...</div>
+                    </div>
+                </div>
+
+                <!-- Top Performers -->
+                <div class="dashboard-card top-performers-card">
+                    <h3><i class="fas fa-star"></i> Top Performers</h3>
+                    <div id="topPerformers" class="card-content">
+                        <div class="top-performer-card">
+                            <div class="player-photo-container">
+                                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" 
+                                     alt="Tua Tagovailoa" 
+                                     class="player-photo"
+                                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiNmM2Y0ZjYiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDEyQzE0LjIwOTEgMTIgMTYgMTAuMjA5MSAxNiA4QzE2IDUuNzkwODYgMTQuMjA5MSA0IDEyIDRDOS43OTA4NiA0IDggNS43OTA4NiA4IDhDOCAxMC4yMDkxIDkuNzkwODYgMTIgMTIgMTJaIiBmaWxsPSIjOTk5Ii8+CjxwYXRoIGQ9Ik0xMiAxNEM5LjM5NTQzIDE0IDcuMjA5MTQgMTUuNDA5MSA2IDE3LjQwOTFWMjBIMThWMTcuNDA5MUMxNi43OTA5IDE1LjQwOTEgMTQuNjA0NiAxNCAxMiAxNFoiIGZpbGw9IiM5OTkiLz4KPC9zdmc+Cjwvc3ZnPg=='">
+                            </div>
+                            <div class="player-info">
+                                <div class="player-name">Tua Tagovailoa</div>
+                                <div class="player-position">QB</div>
+                                <div class="player-stat">4,624 Passing Yards</div>
+                            </div>
+                            <div class="team-badge">MIA</div>
+                        </div>
+                        <div class="top-performer-card">
+                            <div class="player-photo-container">
+                                <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" 
+                                     alt="Christian McCaffrey" 
+                                     class="player-photo"
+                                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiNmM2Y0ZjYiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDEyQzE0LjIwOTEgMTIgMTYgMTAuMjA5MSAxNiA4QzE2IDUuNzkwODYgMTQuMjA5MSA0IDEyIDRDOS43OTA4NiA0IDggNS43OTA4NiA4IDhDOCAxMC4yMDkxIDkuNzkwODYgMTIgMTIgMTJaIiBmaWxsPSIjOTk5Ii8+CjxwYXRoIGQ9Ik0xMiAxNEM5LjM5NTQzIDE0IDcuMjA5MTQgMTUuNDA5MSA2IDE3LjQwOTFWMjBIMThWMTcuNDA5MUMxNi43OTA5IDE1LjQwOTEgMTQuNjA0NiAxNCAxMiAxNFoiIGZpbGw9IiM5OTkiLz4KPC9zdmc+Cjwvc3ZnPg=='">
+                            </div>
+                            <div class="player-info">
+                                <div class="player-name">Christian McCaffrey</div>
+                                <div class="player-position">RB</div>
+                                <div class="player-stat">1,459 Rushing Yards</div>
+                            </div>
+                            <div class="team-badge">SF</div>
+                        </div>
+                        <div class="top-performer-card">
+                            <div class="player-photo-container">
+                                <img src="https://images.unsplash.com/photo-1553778263-73a83bab9b0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" 
+                                     alt="Tyreek Hill" 
+                                     class="player-photo"
+                                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiNmM2Y0ZjYiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDEyQzE0LjIwOTEgMTIgMTYgMTAuMjA5MSAxNiA4QzE2IDUuNzkwODYgMTQuMjA5MSA0IDEyIDRDOS43OTA4NiA0IDggNS43OTA4NiA4IDhDOCAxMC4yMDkxIDkuNzkwODYgMTIgMTIgMTJaIiBmaWxsPSIjOTk5Ii8+CjxwYXRoIGQ9Ik0xMiAxNEM5LjM5NTQzIDE0IDcuMjA5MTQgMTUuNDA5MSA2IDE3LjQwOTFWMjBIMThWMTcuNDA5MUMxNi43OTA5IDE1LjQwOTEgMTQuNjA0NiAxNCAxMiAxNFoiIGZpbGw9IiM5OTkiLz4KPC9zdmc+Cjwvc3ZnPg=='">
+                            </div>
+                            <div class="player-info">
+                                <div class="player-name">Tyreek Hill</div>
+                                <div class="player-position">WR</div>
+                                <div class="player-stat">1,799 Receiving Yards</div>
+                            </div>
+                            <div class="team-badge">MIA</div>
+                        </div>
+                        <div class="top-performer-card">
+                            <div class="player-photo-container">
+                                <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150&q=80" 
+                                     alt="T.J. Watt" 
+                                     class="player-photo"
+                                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiNmM2Y0ZjYiLz4KPHN2ZyB4PSI4IiB5PSI4IiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDEyQzE0LjIwOTEgMTIgMTYgMTAuMjA5MSAxNiA4QzE2IDUuNzkwODYgMTQuMjA5MSA0IDEyIDRDOS43OTA4NiA0IDggNS43OTA4NiA4IDhDOCAxMC4yMDkxIDkuNzkwODYgMTIgMTIgMTJaIiBmaWxsPSIjOTk5Ii8+CjxwYXRoIGQ9Ik0xMiAxNEM5LjM5NTQzIDE0IDcuMjA5MTQgMTUuNDA5MSA2IDE3LjQwOTFWMjBIMThWMTcuNDA5MUMxNi43OTA5IDE1LjQwOTEgMTQuNjA0NiAxNCAxMiAxNFoiIGZpbGw9IiM5OTkiLz4KPC9zdmc+Cjwvc3ZnPg=='">
+                            </div>
+                            <div class="player-info">
+                                <div class="player-name">T.J. Watt</div>
+                                <div class="player-position">LB</div>
+                                <div class="player-stat">19 Sacks</div>
+                            </div>
+                            <div class="team-badge">PIT</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- News -->
+                <div class="dashboard-card news-card">
+                    <h3><i class="fas fa-newspaper"></i> Latest News</h3>
+                    <div id="latestNews" class="card-content">
+                        <div class="loading">Loading news...</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Standings Section -->
+        <section id="standings" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-trophy"></i> NFL Standings</h2>
+                <div class="standings-controls">
+                    <button class="btn-tab active" data-conference="all">All</button>
+                    <button class="btn-tab" data-conference="AFC">AFC</button>
+                    <button class="btn-tab" data-conference="NFC">NFC</button>
+                </div>
+            </div>
+            
+            <div class="standings-container">
+                <div id="standingsData" class="standings-content">
+                    <div class="loading">Loading standings...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scores Section -->
+        <section id="scores" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-football-ball"></i> NFL Scores</h2>
+                <div class="scores-controls">
+                    <button class="btn-tab active" data-period="live">Live</button>
+                    <button class="btn-tab" data-period="today">Today</button>
+                    <button class="btn-tab" data-period="week">This Week</button>
+                    <button class="btn-tab" data-period="all">All Games</button>
+                </div>
+            </div>
+            
+            <div class="scores-container">
+                <div id="scoresData" class="scores-content">
+                    <div class="loading">Loading scores...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Draft Section -->
+        <section id="draft" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-user-graduate"></i> NFL Draft</h2>
+                <div class="draft-controls">
+                    <select id="draftYear" class="draft-select">
+                        <option value="2024">2024 Draft</option>
+                        <option value="2023">2023 Draft</option>
+                        <option value="2022">2022 Draft</option>
+                    </select>
+                    <select id="draftRound" class="draft-select">
+                        <option value="all">All Rounds</option>
+                        <option value="1">Round 1</option>
+                        <option value="2">Round 2</option>
+                        <option value="3">Round 3</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="draft-container">
+                <div id="draftData" class="draft-content">
+                    <div class="loading">Loading draft data...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Teams Section -->
+        <section id="teams" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-users"></i> NFL Teams</h2>
+                <div class="teams-controls">
+                    <input type="text" id="teamSearch" placeholder="Search teams..." class="search-input">
+                    <select id="conferenceFilter" class="filter-select">
+                        <option value="all">All Conferences</option>
+                        <option value="AFC">AFC</option>
+                        <option value="NFC">NFC</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="teams-container">
+                <div id="teamsData" class="teams-content">
+                    <div class="loading">Loading teams...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Players Section -->
+        <section id="players" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-user"></i> NFL Players</h2>
+                <div class="players-controls">
+                    <input type="text" id="playerSearch" placeholder="Search players..." class="search-input">
+                    <select id="positionFilter" class="filter-select">
+                        <option value="all">All Positions</option>
+                        <option value="QB">Quarterback</option>
+                        <option value="RB">Running Back</option>
+                        <option value="WR">Wide Receiver</option>
+                        <option value="TE">Tight End</option>
+                        <option value="DEF">Defense</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="players-container">
+                <div id="playersData" class="players-content">
+                    <div class="loading">Loading players...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section id="stats" class="content-section">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-line"></i> NFL Statistics</h2>
+                <div class="stats-controls">
+                    <select id="statCategory" class="filter-select">
+                        <option value="passing">Passing</option>
+                        <option value="rushing">Rushing</option>
+                        <option value="receiving">Receiving</option>
+                        <option value="defense">Defense</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="stats-container">
+                <div id="statsData" class="stats-content">
+                    <div class="loading">Loading statistics...</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 NFL Database. All rights reserved.</p>
+            <p>Data provided by NFL API | Last updated: <span id="lastUpdated"></span></p>
+        </div>
+    </footer>
+
+    <script src="js/footballdb.js"></script>
+</body>
+</html>
