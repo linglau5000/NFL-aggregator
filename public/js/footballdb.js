@@ -1,4 +1,5 @@
 // FootballDB.com Style JavaScript
+console.log('🚀 FootballDB JavaScript loaded');
 
 class FootballDB {
     constructor() {
@@ -128,16 +129,24 @@ class FootballDB {
 
     async loadDashboard() {
         try {
+            console.log('🏈 Loading dashboard data...');
             const [gamesData, newsData] = await Promise.all([
                 this.fetchData('/api/games'),
                 this.fetchData('/api/news')
             ]);
 
+            console.log('📊 Games data:', gamesData);
+            console.log('📰 News data:', newsData);
+
             this.displayRecentGames(gamesData.data?.games || []);
             this.displayUpcomingGames(gamesData.data?.games || []);
             this.displayLatestNews(newsData.data?.news || []);
         } catch (error) {
-            console.error('Error loading dashboard:', error);
+            console.error('❌ Error loading dashboard:', error);
+            // Show error message to user
+            document.getElementById('recentGames').innerHTML = '<p class="text-center text-red-500">Error loading games data</p>';
+            document.getElementById('upcomingGames').innerHTML = '<p class="text-center text-red-500">Error loading games data</p>';
+            document.getElementById('latestNews').innerHTML = '<p class="text-center text-red-500">Error loading news data</p>';
         }
     }
 
@@ -738,10 +747,12 @@ class FootballDB {
     // Utility functions
     async fetchData(endpoint) {
         if (this.cache.has(endpoint)) {
+            console.log(`📦 Using cached data for ${endpoint}`);
             return this.cache.get(endpoint);
         }
 
         try {
+            console.log(`🌐 Fetching data from ${this.apiBaseUrl}${endpoint}`);
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
             
@@ -755,17 +766,22 @@ class FootballDB {
             
             clearTimeout(timeoutId);
             
+            console.log(`📡 Response status: ${response.status}`);
+            
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             
             const data = await response.json();
+            console.log(`✅ Successfully fetched ${endpoint}:`, data);
             this.cache.set(endpoint, data);
             return data;
         } catch (error) {
-            console.error(`Error fetching ${endpoint}:`, error);
+            console.error(`❌ Error fetching ${endpoint}:`, error);
             // Return fallback data for better UX
-            return this.getFallbackData(endpoint);
+            const fallback = this.getFallbackData(endpoint);
+            console.log(`🔄 Using fallback data for ${endpoint}:`, fallback);
+            return fallback;
         }
     }
 

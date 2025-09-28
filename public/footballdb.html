@@ -284,5 +284,12 @@
     </footer>
 
     <script src="js/footballdb.js"></script>
+    <script>
+        // Initialize the FootballDB app when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🏈 DOM loaded, initializing FootballDB...');
+            window.footballDB = new FootballDB();
+        });
+    </script>
 </body>
 </html>
