@@ -108,9 +108,10 @@ railway run npm run db:seed
 ## 🔗 **After Deployment**
 
 Your NFL Aggregator will be accessible at:
-- **Railway URL**: `https://your-app-name.railway.app`
-- **Health Check**: `https://your-app-name.railway.app/health`
-- **API Documentation**: `https://your-app-name.railway.app/api`
+- **Railway URL**: `https://nfl-aggregator-api-production.up.railway.app`
+- **FootballDB Frontend**: `https://nfl-aggregator-api-production.up.railway.app/footballdb`
+- **Health Check**: `https://nfl-aggregator-api-production.up.railway.app/health`
+- **API Documentation**: `https://nfl-aggregator-api-production.up.railway.app/api`
 
 ## 📞 **Support & Next Steps**
 
